@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/HowardNote/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/HowardNote/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/HowardNote/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/HowardNote/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/HowardNote/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/HowardNote/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/HowardNote/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Log">
+<meta property="og:url" content="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-25T08:23:26.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Log">
+<meta name="twitter:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/HowardNote/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux2/"/>
+
+
+
+
+
+  <title>Linux Log | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/HowardNote/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/HowardNote/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/HowardNote/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://howardhuang0517.github.io/HowardNote/HowardNote/2018/04/25/Linux2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HowardHuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/HowardNote/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux Log</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:03:31+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新手菜鳥的發文，寫錯是剛好，寫對是運氣好。</p>
+<a id="more"></a>
+<h2 id="查看系統訊息log"><a href="#查看系統訊息log" class="headerlink" title="查看系統訊息log"></a>查看系統訊息log</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ls -l /var/<span class="built_in">log</span>  查看系統<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">tail /var/<span class="built_in">log</span>/messages  查看輸入指令</span><br><span class="line"></span><br><span class="line">journalctl  查看日誌命令</span><br><span class="line"></span><br><span class="line">journalctl -b  查看自今次開機的紀錄檔</span><br><span class="line"></span><br><span class="line">journalctl -f  最後發生的十件事</span><br><span class="line"></span><br><span class="line">journalctl /usr/lib/systemd/systemd  顯示特定程序的所有消息</span><br><span class="line"></span><br><span class="line">journalctl _PID=1  顯示特定進程的所有消息</span><br></pre></td></tr></table></figure>
+<h2 id="查看登入人員"><a href="#查看登入人員" class="headerlink" title="查看登入人員"></a>查看登入人員</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">who/w  查看誰正在登入</span><br><span class="line"></span><br><span class="line">who -b 查看最近一次開機時間</span><br><span class="line"></span><br><span class="line">w -f   開啟或關閉顯示使用者從何處登入系統。 </span><br><span class="line"></span><br><span class="line">w -h 　不顯示各欄位元的標題資訊列。</span><br><span class="line"></span><br><span class="line">w -l 　使用詳細格式列表，此為預設值。</span><br><span class="line"></span><br><span class="line">w -s   使用簡潔格式清單，不顯示使用者登入時間，終端機階段作業和程式所耗費的CPU時間 </span><br><span class="line"></span><br><span class="line">w -u 　忽略執行程式的名稱，以及該程式耗費CPU時間的資訊。 </span><br><span class="line"></span><br><span class="line">w -V 　顯示版本資訊。</span><br><span class="line"></span><br><span class="line">last  查之前登入的帳號和時間</span><br><span class="line"></span><br><span class="line">last -3 reboot  查看最近三筆開機記錄</span><br><span class="line"></span><br><span class="line">last -x | grep shutdown  查看關機記錄</span><br><span class="line"></span><br><span class="line">lastb -i  查看失敗登入記錄, 來源以 IP 顯示</span><br><span class="line"></span><br><span class="line">uptime  查看系統從上次開機到現在已經運行了多久</span><br><span class="line"></span><br><span class="line">tail /var/<span class="built_in">log</span>/messages  查看輸入指令</span><br><span class="line"></span><br><span class="line">last  查看登入成功</span><br><span class="line"></span><br><span class="line">lastb  查看登入失敗</span><br><span class="line"></span><br><span class="line">ps  觀看系統正在執行的行程</span><br><span class="line"></span><br><span class="line">top/htop  觀看前幾名系統正在執行的行程</span><br></pre></td></tr></table></figure>
+<h2 id="顯示行數"><a href="#顯示行數" class="headerlink" title="顯示行數"></a>顯示行數</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tail -n +3000 | head -n 1000  從第3000行開始，顯示1000行。即顯示3000~3999行</span><br><span class="line"></span><br><span class="line">cat filename| head -n 3000 | tail -n +1000  顯示1000行到3000行</span><br><span class="line"></span><br><span class="line">tail -n 1000  顯示最後1000行</span><br><span class="line"></span><br><span class="line">tail -n +1000  從1000行開始顯示，顯示1000行以後</span><br><span class="line"></span><br><span class="line">head -n 1000  顯示前面1000行</span><br><span class="line"></span><br><span class="line">sed -n <span class="string">'5,10p'</span> filename  只查看文件的第5行到第10行</span><br></pre></td></tr></table></figure>
+<h2 id="查看硬體log"><a href="#查看硬體log" class="headerlink" title="查看硬體log"></a>查看硬體log</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/secure 記錄登入系統存取資料的檔案</span><br><span class="line"></span><br><span class="line">cat /var/<span class="built_in">log</span>/messages 系統發生的錯誤訊息（或者是重要的資訊）都會記錄在這個檔案</span><br><span class="line"></span><br><span class="line">cat /var/<span class="built_in">log</span>/maillog 紀錄郵件存取或往來</span><br><span class="line"></span><br><span class="line">cat /var/<span class="built_in">log</span>/wtmp記錄登入者的訊息資料，由於本檔案已經被編碼過，所以必須使用 </span><br><span class="line">last 這個指令來取出檔案的內容</span><br><span class="line"></span><br><span class="line">cat /var/<span class="built_in">log</span>/boot.log 記錄開機或者是一些服務啟動的時候，所顯示的啟動或關閉訊息</span><br></pre></td></tr></table></figure>
+<h2 id="查看Crontab-Log"><a href="#查看Crontab-Log" class="headerlink" title="查看Crontab Log"></a>查看Crontab Log</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/cron  記錄 crontab 例行性服務的內容</span><br></pre></td></tr></table></figure>
+<h2 id="查看輸入過的指令"><a href="#查看輸入過的指令" class="headerlink" title="查看輸入過的指令"></a>查看輸入過的指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span>  查看輸入過的指令</span><br><span class="line"></span><br><span class="line"><span class="built_in">history</span> 10  只列出最近10條記錄</span><br><span class="line"></span><br><span class="line"><span class="built_in">history</span> -c  立即清空<span class="built_in">history</span>當前所有歷史命令的記錄</span><br></pre></td></tr></table></figure>
+<h2 id="查詢硬體資訊的工具指令"><a href="#查詢硬體資訊的工具指令" class="headerlink" title="查詢硬體資訊的工具指令"></a>查詢硬體資訊的工具指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">lshw   這個工具會列出電腦中所有的硬體資訊</span><br><span class="line"></span><br><span class="line">lscpu  是專門用來查詢 CPU 資訊的工具</span><br><span class="line"></span><br><span class="line">lspci  若是要查看顯示卡的型號</span><br><span class="line"></span><br><span class="line">lsusb  可以列出所有的 USB 裝置</span><br><span class="line"></span><br><span class="line">lsmod  這個指令會列出所有被系統載入的模組</span><br><span class="line"></span><br><span class="line">dmidecode -t processor   <span class="comment"># CPU</span></span><br><span class="line"></span><br><span class="line">dmidecode -t slot        <span class="comment"># PCI 插槽</span></span><br><span class="line"></span><br><span class="line">dmidecode -t system      <span class="comment"># 主機廠商</span></span><br><span class="line"></span><br><span class="line">dmidecode -t baseboard   <span class="comment"># on-board 設備</span></span><br><span class="line"></span><br><span class="line">dmesg | more  顯示所有資訊</span><br><span class="line"></span><br><span class="line">dmesg | grep -i Memory  顯示關於記憶體</span><br><span class="line"></span><br><span class="line">dmesg | grep -i USB  顯示 USB 相關開機資訊</span><br><span class="line"></span><br><span class="line">dmesg | grep eth0  顯示 eth0 相關開機資訊</span><br><span class="line"></span><br><span class="line">dmesg -c  清除 dmesg 的內容，可以加上 -c 參數</span><br></pre></td></tr></table></figure>
+<h2 id="查看對時紀錄"><a href="#查看對時紀錄" class="headerlink" title="查看對時紀錄"></a>查看對時紀錄</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tail -n 20 /var/<span class="built_in">log</span>/messages | grep chronyd  查看對時紀錄</span><br><span class="line"></span><br><span class="line">tail -n 20 /var/<span class="built_in">log</span>/messages | grep ntpd     查看對時紀錄</span><br><span class="line"></span><br><span class="line">chronyc tracking  查看與 ntp server 的同步狀態</span><br></pre></td></tr></table></figure>
+<h2 id="檔案類型與權限資料"><a href="#檔案類型與權限資料" class="headerlink" title="檔案類型與權限資料"></a>檔案類型與權限資料</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--   1 root     root         1422 Jun 18 17:20 .Xdefaults </span><br><span class="line">第一欄      二  三       四            五      六        七  </span><br><span class="line">[檔案屬性][檔案數][擁有者][所有者群組][大小][建檔日期][檔名]</span><br><span class="line"></span><br><span class="line"> [-][rwx][r-x][r--] </span><br><span class="line">  1  234  567  890 </span><br><span class="line">     1 為：代表這個檔名為目錄或檔案（上面為檔案） </span><br><span class="line">    234為：擁有人的權限（上面為可讀、可寫、可執行） </span><br><span class="line">    567為：同群組使用者權限（上面為可讀可執行） </span><br><span class="line">    890為：其他使用者權限（上面為僅可讀）</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/HowardNote/2018/04/25/Linux1/" rel="next" title="Linux作業系統基礎篇">
+                <i class="fa fa-chevron-left"></i> Linux作業系統基礎篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/HowardNote/2018/04/25/Linux3/" rel="prev" title="Linux相關協定">
+                Linux相關協定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HowardHuang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/HowardNote/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看系統訊息log"><span class="nav-number">1.</span> <span class="nav-text">查看系統訊息log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看登入人員"><span class="nav-number">2.</span> <span class="nav-text">查看登入人員</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顯示行數"><span class="nav-number">3.</span> <span class="nav-text">顯示行數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看硬體log"><span class="nav-number">4.</span> <span class="nav-text">查看硬體log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看Crontab-Log"><span class="nav-number">5.</span> <span class="nav-text">查看Crontab Log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看輸入過的指令"><span class="nav-number">6.</span> <span class="nav-text">查看輸入過的指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查詢硬體資訊的工具指令"><span class="nav-number">7.</span> <span class="nav-text">查詢硬體資訊的工具指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看對時紀錄"><span class="nav-number">8.</span> <span class="nav-text">查看對時紀錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檔案類型與權限資料"><span class="nav-number">9.</span> <span class="nav-text">檔案類型與權限資料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HowardHuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/HowardNote/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/HowardNote/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/HowardNote/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

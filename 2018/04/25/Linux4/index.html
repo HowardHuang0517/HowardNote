@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/HowardNote/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/HowardNote/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/HowardNote/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/HowardNote/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/HowardNote/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/HowardNote/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/HowardNote/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查看Linux效能指標">
+<meta property="og:url" content="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-25T09:07:44.854Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查看Linux效能指標">
+<meta name="twitter:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/HowardNote/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux4/"/>
+
+
+
+
+
+  <title>查看Linux效能指標 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/HowardNote/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/HowardNote/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/HowardNote/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://howardhuang0517.github.io/HowardNote/HowardNote/2018/04/25/Linux4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HowardHuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/HowardNote/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">查看Linux效能指標</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:03:41+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新手菜鳥的發文，寫錯是剛好，寫對是運氣好。</p>
+<a id="more"></a>
+<h2 id="CPU-Memory"><a href="#CPU-Memory" class="headerlink" title="CPU/Memory"></a>CPU/Memory</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">top/htop  查看CPU/memory效能指標</span><br><span class="line"></span><br><span class="line">top/htop 1  可看cpu數量</span><br><span class="line"></span><br><span class="line">lscpu  看cpu狀況</span><br><span class="line"></span><br><span class="line">ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head 記憶體使用量，從大到小排序前十筆</span><br><span class="line"></span><br><span class="line">free -m  查看記憶體</span><br><span class="line"></span><br><span class="line">vmstat n  動態監控記憶體使用情況(n為採樣間隔時間)</span><br></pre></td></tr></table></figure>
+<p>欄位說明：<br>Procs（進程）：<br>r: 運行佇列中進程數量<br>b: 等待IO的進程數量</p>
+<p>Memory（記憶體）：<br>swpd: 使用虛擬記憶體大小<br>free: 可用記憶體大小<br>buff: 用作緩衝的記憶體大小<br>cache: 用作緩存的記憶體大小</p>
+<p>Swap：<br>si: 每秒從交換區寫到記憶體的大小<br>so: 每秒寫入交換區的記憶體大小<br>IO：（現在的Linux版本塊的大小為1024bytes）<br>bi: 每秒讀取的塊數<br>bo: 每秒寫入的塊數</p>
+<p>系統：<br>in: 每秒中斷數，包括時鐘中斷。<br>cs: 每秒上下文切換數。</p>
+<p>CPU（以百分比表示）：<br>us: 使用者進程執行時間(user time)<br>sy: 系統進程執行時間(system time)<br>id: 閒置時間(包括IO等待時間),中央處理器的閒置時間 。以百分比表示。<br>wa: 等待IO時間</p>
+<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">df  命令的功能是用來檢查linux伺服器的檔案系統的磁碟空間佔用情況。可以利用該命令來獲取硬碟被佔用了多少空間，目前還剩下多少空間</span><br><span class="line"></span><br><span class="line">df/du  查看硬碟或目錄的容量 </span><br><span class="line"> </span><br><span class="line">df -h  將容量結果以易讀的容量格式顯示出來</span><br><span class="line"></span><br><span class="line">du 這個指令來計算資料夾跟檔案大小</span><br><span class="line"></span><br><span class="line">du -s 目錄下的所有檔案、資料夾總大小，單位是KB</span><br><span class="line"></span><br><span class="line">du -sh 目錄下的所有檔案、資料夾總大小，單位是GB</span><br><span class="line"></span><br><span class="line">lsblk 可以看成『 list block device 』的縮寫，就是列出所有儲存裝置的意思</span><br></pre></td></tr></table></figure>
+<p>NAME：就是裝置的檔名囉！會省略 /dev 等前導目錄！<br>MAJ:MIN：其實核心認識的裝置都是透過這兩個代碼來熟悉的！分別是主要：次要裝置代碼！<br>RM：是否為可卸載裝置 (removable device)，如光碟、USB 磁碟等等<br>SIZE：當然就是容量囉！<br>RO：是否為唯讀裝置的意思<br>TYPE：是磁碟 (disk)、分割槽 (partition) 還是唯讀記憶體 (rom) 等輸出<br>MOUTPOINT：掛載點</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iostat  是I/O statistics（輸入/輸出統計）的縮寫，iostat工具將對系統的磁片操作活動進行監視。</span><br><span class="line"></span><br><span class="line">yum install sysstat -y  執行 iostat 要安裝 ifconfig 到系統</span><br><span class="line"></span><br><span class="line">iostat  顯示所有設備負載情況</span><br></pre></td></tr></table></figure>
+<p>cpu屬性值說明：<br>%user：CPU處在用戶模式下的時間百分比。<br>%nice：CPU處在帶NICE值的用戶模式下的時間百分比。<br>%system：CPU處在系統模式下的時間百分比。<br>%iowait：CPU等待輸入輸出完成時間的百分比。<br>%steal：管理程式維護另一個虛擬處理器時，虛擬CPU的無意識等待時間百分比。<br>%idle：CPU空閒時間百分比。<br>tps：該設備每秒的傳輸次數（Indicate the number of transfers per second that were issued to the device.）。“一次傳輸”意思是“一次I/O請求”。多個邏輯請求可能會被合併為“一次I/O請求”。“一次傳輸”請求的大小是未知的。<br>kB_read/s：每秒從設備（drive expressed）讀取的資料量；<br>kB_wrtn/s：每秒向設備（drive expressed）寫入的資料量；<br>kB_read：讀取的總數據量；<br>kB_wrtn：寫入的總數量資料量；<br>這些單位都為Kilobytes。</p>
+<p>-C 顯示CPU使用情況<br>-d 顯示磁片使用情況<br>-k 以 KB 為單位顯示<br>-m 以 M 為單位顯示<br>-N 顯示磁碟陣列(LVM) 資訊<br>-n 顯示NFS 使用情況<br>-p[磁片] 顯示磁片和分區的情況<br>-t 顯示終端和CPU的信息<br>-x 顯示詳細資訊<br>-V 顯示版本資訊</p>
+<h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ethtool +網卡號碼 查看網路卡狀態及設定</span><br><span class="line"></span><br><span class="line">ifconfig  可以用來監控網卡的現實流量(可以指定網段)、反向解析IP、顯示端口信息等</span><br><span class="line"></span><br><span class="line">dmesg | grep -i duplex   Linux查看網卡鏈接速度。在Linux系統中，遇到網路速度慢的時候會需要確認網卡的鏈接速度和工作狀態，用以排查故障</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iperf 是一個 TCP/IP 和 UDP/IP 的效能測量工具，能夠提供網絡吞吐率信息，以及震動、丟包率、最大段和最大傳輸單元大小等統計信息</span><br><span class="line">iperf -s  看Server端</span><br><span class="line">iperf -c 192.12.1.2  -t 10 -i 5  看Client端</span><br></pre></td></tr></table></figure>
+<p>#-c : server IP</p>
+<p>#-t : 測量時間間隔為10秒</p>
+<p>#-i : 每隔 5 秒將測量結果顯示出來，最後再算出平均值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iftop   專門監控網路流量的工具</span><br></pre></td></tr></table></figure>
+<p>TX：傳送流量<br>RX：接收流量<br>TOTAL：總流量<br>Cumm：運行iftop到目前時間的總流量<br>peak：流量峰值<br>rates：分別表示過去2s 10s 40s 的平均流量<br>相關參數：<br>-h：顯示簡短的使用說明。<br>-n：不執行 DNS 反解，直接顯示 IP 位址。<br>-N：直接顯示埠號（port），不轉換為服務名稱。<br>-P：以 promiscuous 模式執行 iftop。<br>-i：指定網路卡（interface）。<br>-B：流量以 Bytes 為單位。<br>-F：指定要監看的 IPv4 網路區段。<br>-G：指定要監看的 IPv6 網路區段。<br>-f：指定 filter code。</p>
+<p>進入iftop畫面後的一些操作命令(注意大小寫)<br>按h切換是否顯示幫助;<br>按n切換顯示本機的IP或主機名;<br>按s切換是否顯示本機的host信息;<br>按d切換是否顯示遠端目標主機的host信息;<br>按t切換顯示格式為2行/1行/只顯示發送流量/只顯示接收流量;<br>按N切換顯示端口號或端口服務名稱;<br>按S切換是否顯示本機的端口信息;<br>按D切換是否顯示遠端目標主機的端口信息;<br>按p切換是否顯示端口信息;<br>按P切換暫停/繼續顯示;<br>按b切換是否顯示平均流量圖形條;<br>按B切換計算2秒或10秒或40秒內的平均流量;<br>按T切換是否顯示每個連接的總流量;<br>按l打開屏幕過濾功能，輸入要過濾的字符，比如ip,按迴車後，屏幕就只顯示這個IP相關的流量信息;<br>按L切換顯示畫面上邊的刻度;刻度不同，流量圖形條會有變化;<br>按j或按k可以向上或向下滾動屏幕顯示的連接紀錄;<br>按1或2或3可以根據右側顯示的三列流量數據進行排序;<br>按&lt;根據左邊的本機名或IP排序;<br>按&gt;根據遠端目錄主機的主機名或IP排序;<br>按o切換是否固定只顯示當前的連接;<br>按f可以編輯過濾代碼，<br>按!可以使用shell命令，<br>按q退出監控。</p>
+<h2 id="Load-Average"><a href="#Load-Average" class="headerlink" title="Load/Average"></a>Load/Average</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uptime 查看  Load Average最簡單的方法</span><br><span class="line">top/htop   也可以</span><br></pre></td></tr></table></figure>
+<p>Linux 的 Load Average 的數字代表有多少個 process 在等待 CPU 及 DISK I／O 等資源運算，如果是 1 表示有一個 process 正在執行或等待 CPU 運算；5 表示有 5 個 process 正在執行或等待 CPU 運算，一台完全閒置的電腦，其 Load Average 是 0.<br>這個 Load Average 數值可以簡單地這樣看待，對於一台只有一個核心的單處理器系統，Load Average 為 1.03 時表示系統超載 3%，如果是 0.8，表示系統並未超載，只用了 80%。</p>
+<h2 id="測試硬碟讀寫速度"><a href="#測試硬碟讀寫速度" class="headerlink" title="測試硬碟讀寫速度"></a>測試硬碟讀寫速度</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yum install hdparm -y  安裝hdparm</span><br><span class="line"></span><br><span class="line">hdparm -t /dev/硬碟名稱  測試硬碟讀取速度</span><br><span class="line"></span><br><span class="line">hdparm -t --direct /dev/硬碟名稱 測試硬碟寫入速度</span><br><span class="line"></span><br><span class="line">dd <span class="keyword">if</span>=/dev/硬碟名稱 of=/dev/null bs=1M count=2048 測試硬碟讀(READ)速度</span><br><span class="line"></span><br><span class="line">dd of=/dev/硬碟名稱 <span class="keyword">if</span>=/dev/null bs=1M count=2048 測試硬碟寫(WRITE)速度</span><br><span class="line"></span><br><span class="line">注意，“/dev/硬碟名稱”指的是對應硬碟的驅動號，請執行“fdisk -l”查看。</span><br></pre></td></tr></table></figure>
+<h2 id="測試硬碟讀寫速度-fio"><a href="#測試硬碟讀寫速度-fio" class="headerlink" title="測試硬碟讀寫速度-fio"></a>測試硬碟讀寫速度-fio</h2><pre><code class="bash">yum install libaio-devel fio 安裝fio 
+
+順序讀：
+sudo fio -filename=/dev/nvme0n1p1 -direct=1 -iodepth 1 -thread -rw=<span class="built_in">read</span> -ioengine=psync -bs=16k -size=200G -numjobs=30 -runtime=1000 -group_reporting -name=mytest
+
+隨機寫：
+sudo fio -filename=/dev/nvme0n1p1 -direct=1 -iodepth 16 -thread -rw=randwrite -ioengine=psync -bs=4k -size=10G -numjobs=16 -runtime=300 -group_reporting -name=mytest
+
+順序寫：
+fio -filename=/dev/sdb1 -direct=1 -iodepth 1 -thread -rw=write -ioengine=psync -bs=16k -size=200G -numjobs=30 -runtime=1000 -group_reporting -name=mytest
+
+混合隨機讀寫：
+fio -filename=/dev/sdb1 -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=70 -ioengine=psync -bs=16k -size=200G -numjobs=30 -runtime=100 -group_reporting -name=mytest -ioscheduler=noop
+</code></pre>
+<p>說明：<br>filename=/dev/sdb1       測試文件名稱，通常選擇需要測試的盤的data目錄。<br>direct=1                 測試過程繞過機器自帶的buffer。使測試結果更真實。<br>rw=randwrite             測試隨機寫的I/O<br>rw=randrw                測試隨機寫和讀的I/O<br>bs=16k                   單次io的塊文件大小為16k<br>bsrange=512-2048         同上，提定數據塊的大小範圍<br>size=5g    本次的測試文件大小為5g，以每次4k的io進行測試。<br>numjobs=30               本次的測試線程為30.<br>runtime=1000             測試時間為1000秒，如果不寫則一直將5g文件分4k每次寫完為止。<br>ioengine=psync           io引擎使用pync方式<br>rwmixwrite=30            在混合讀寫的模式下，寫占30%<br>group_reporting          關於顯示結果的，匯總每個進程的信息。</p>
+<p>此外<br>lockmem=1g               只使用1g內存進行測試。<br>zero_buffers             用0初始化系統buffer。<br>nrfiles=8                每個進程生成文件的數量。</p>
+<p>IOPS表示儲存每秒傳輸IO的數量(是用來計算I/O流中每個節點中每秒傳輸的數量)，<br>Throughput輸送量則表示每秒資料的傳輸總量(用來計算每秒在I/O流中傳輸的數據總量)。</p>
+<p>fio 參數說明<br>–direct=1                  # non-buffered I/O<br>–rw=randrw                 # 隨機寫與讀</p>
+<pre><code>#   read
+#   write
+#   rw
+#   randread
+#   randwrite
+#   randrw
+</code></pre><p>–bs=4k                     # block size 檔案寫入大小<br>–size=4g                   # 測試的大小<br>–numjobs=16                # 同一個 workload 同時多少個 IO 請求<br>–runtime=180               # timeout 時間 (秒)，就算 –size<br>                              的大小還未到達，還是結束<br>–ioengine=libaio           # IO 引擎</p>
+<pre><code>#   libaio - async IO 
+#   ...
+</code></pre><p>–rwmixwrite=30             # 混合讀寫時，寫佔 30% loading<br>–rwmixread=100             # 混合讀寫時，讀佔 100% loading<br>–refill_buffers            # 把 Buffer 填滿就不會跑到 Buffer 的值<br>–group_reporting           # 總表顯示<br>–iodepth=16                # 同一時間有多少 IO 在作存取<br>–name=fio_test_write       # job 名稱，會在當下目錄產生暫存檔</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/HowardNote/2018/04/25/Linux3/" rel="next" title="Linux相關協定">
+                <i class="fa fa-chevron-left"></i> Linux相關協定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HowardHuang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/HowardNote/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU-Memory"><span class="nav-number">1.</span> <span class="nav-text">CPU/Memory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disk"><span class="nav-number">2.</span> <span class="nav-text">Disk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network"><span class="nav-number">3.</span> <span class="nav-text">Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Average"><span class="nav-number">4.</span> <span class="nav-text">Load/Average</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試硬碟讀寫速度"><span class="nav-number">5.</span> <span class="nav-text">測試硬碟讀寫速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#測試硬碟讀寫速度-fio"><span class="nav-number">6.</span> <span class="nav-text">測試硬碟讀寫速度-fio</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HowardHuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/HowardNote/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/HowardNote/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/HowardNote/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

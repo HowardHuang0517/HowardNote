@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/HowardNote/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/HowardNote/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/HowardNote/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/HowardNote/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/HowardNote/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/HowardNote/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/HowardNote/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux相關協定">
+<meta property="og:url" content="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-25T09:07:46.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux相關協定">
+<meta name="twitter:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/HowardNote/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux3/"/>
+
+
+
+
+
+  <title>Linux相關協定 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/HowardNote/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/HowardNote/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/HowardNote/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://howardhuang0517.github.io/HowardNote/HowardNote/2018/04/25/Linux3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HowardHuang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/HowardNote/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux相關協定</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:03:38+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新手菜鳥的發文，寫錯是剛好，寫對是運氣好。</p>
+<a id="more"></a>
+<h2 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h2><p>ICMP網路協定簡介 網際網路控制訊息協定</p>
+<p>ICMP是Internet Control Message Protocol的縮寫，這個網路協定運用在網路七層協定中的第三層。該協定的最主要目的，是用來解析網路封包或是分析路由的情況，大多是透過所傳回來的錯誤訊息進行分析，而網路管理人員則利用這個協定的工具來了解狀況，進而使用其他措施解決所遇到的問題。 </p>
+<p>ICMP是在RFC 792中定義的網際網路協定套組之一。通常用於返回的錯誤資訊或是分析路由。ICMP錯誤訊息總是包括了源資料並返回給傳送者。 ICMP錯誤訊息的例子之一是TTL值過期。每個路由器在轉發資料報的時候都會把IP包頭中的TTL值減1。如果TTL值為0，「TTL在傳輸中過期」的訊息將會回報給源位址。 每個ICMP訊息都是直接封裝在一個IP封包中的，因此，和UDP一樣，ICMP是不可靠的<br>ICMP協定是基於IP協定之上運作的，不過主要不是用於點與點之間的傳輸，但有兩個工具卻是用於點與點之間，透過ICMP協定來分析網路狀況，它們就是ping與traceroute，下面會為各位說明。 </p>
+<p>ICMP協定被定義在RFC 792文件之中。其中重要的一點是，ICMP會使用TTL的概念，TTL的全名是Time To Live，其值代表還有多少「生存時間」，其實就是還可以被轉發處理多少次。 </p>
+<p>每個路由器在轉發ICMP封包時，都會把IP Header的TTL的值減1，如果TTL的值已經到0，就代表TTL已經到期，接著就會傳送錯誤訊息給原本發送的網路設備。Traceroute工具就是使用TTL的方式來達到網路檢測。</p>
+<p>ICMP是在RFC 792中定義的網際網路協定套組之一。通常用於返回的錯誤資訊或是分析路由。ICMP錯誤訊息總是包括了源資料並返回給傳送者。 ICMP錯誤訊息的例子之一是TTL值過期。每個路由器在轉發資料報的時候都會把IP包頭中的TTL值減1。如果TTL值為0，「TTL在傳輸中過期」的訊息將會回報給源位址。 每個ICMP訊息都是直接封裝在一個IP封包中的，因此，和UDP一樣，ICMP是不可靠的。</p>
+<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h2><p>傳輸層為 OSI 網路參考模型中的第四層；DoD 模型中的第三層。傳輸層有兩個重要的協定，分別為 TCP 協定與 UDP 協定。傳輸層提供了系統之間的資料傳輸更高階的控制，其功能包括建立及解除傳輸、傳輸錯誤偵測及回覆、流程控制和分封包裝、錯誤的處理、優先次序與安全性等。</p>
+<p>TCP 協定<br>TCP (Transmission Control Protocol) 是位於OSI參考模型中第四層傳輸層的一種網路通訊協定，為傳輸控制協定，主要目的是可確保資料通訊的正確傳輸，提供流量控制(flow control) 的特性。<br>TCP 所提供的是一個可靠的連線導向 (Connection Oriented) 的資料流傳輸機制，負責發送端與接收端的協定建立，並且保證資料在網路上傳送的安全性。<br>TCP 會在接收會議層以上的通訊協定而來的資料之後，將其分割成較小封包，以便於傳輸，在將資料分割成封包時就會先附上序列編號，接著再將該封包傳送至網路層的 IP。接收端可以透過檢查編號將封包重新排序，以確保封包排列的正確性。</p>
+<p>UDP 協定<br>UDP (User Datagram Protocol) 協定提供的是一個非可靠的非連線型的資料流傳輸服務，也同樣是位於 OSI 網路參考模型的第四層傳輸層中的一種網路通訊協定。<br>所謂的非連線型，指的是在不通知傳送目標要開始傳送訊息的情況之下，突然開始進行送訊的一種方式。因此在通訊上的可靠性較低，但若與 TCP 比較，則因為其通訊協定本身的負擔較輕，所以速度會比較快，適合用於即時服務等範疇上。<br>UDP 不會運用確認機制來保證資料是否正確的被接收，資料的接收也不必按照順序，不需要重新傳送遺失的資料，也不提供回傳機制來控制資料流的速度。因此，若要傳輸像語音、影像等訊息量較大的資料，可以容忍遺失一些封包，此時會較建議使用 UDP 協定。</p>
+<h2 id="HTTP-超文本傳輸協定"><a href="#HTTP-超文本傳輸協定" class="headerlink" title="HTTP  超文本傳輸協定"></a>HTTP  超文本傳輸協定</h2><p>我們先從 HTTP 講起，HTTP 全名為 Hypertext Transfer Protocol（超文本傳輸協定），我們可以把傳輸協定視為網路裝置的共同語言，當兩個裝置傳輸資料時，會需要用一定規格的語言來溝通，這個規格就是傳輸協定。<br>而 HTTP 就是用戶端（瀏覽器）和伺服器（網站主機）之間的傳輸協定，當我們瀏覽網站時，電腦會透過瀏覽器發起一個 HTTP 請求（ request），向伺服器要求一些資源（resource），這個資源可以是圖片、 HTML 檔案、影片檔案等等，而儲存資源的地址就是我們俗稱的網址（URL）。瀏覽器拿到這些資源之後，會把它組合成人類可讀的網頁，呈現在使用者面前。</p>
+<h2 id="Ping"><a href="#Ping" class="headerlink" title="Ping"></a>Ping</h2><p>Ping是一種電腦網路工具，用來測試封包能否透過IP協定到達特定主機。ping的運作原理是向目標主機傳出一個ICMP echo@要求封包，並等待接收echo回應封包。程式會按時間和成功回應的次數估算遺失封包率和封包往返時間。</p>
+<h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><p>Telnet協議是一種應用層協議，使用於網際網路及區域網中，使用虛擬終端機的形式，提供雙向、以文字字串為主的命令列介面互動功能。屬於TCP/IP協議族的其中之一，是Internet遠端登錄服務的標準協議和主要方式，常用於伺服器的遠端控制，可供使用者在本地主機執行遠端主機上的工作。</p>
+<h2 id="CURL"><a href="#CURL" class="headerlink" title="CURL"></a>CURL</h2><p>CURL 是很方便的Rest客戶端，可以很方便的完成許多Rest API測試的需求，甚至，如果是需要先登入或認證的rest api，也可以進行測試，利用curl指令，可以送出HTTP GET, POST, PUT, DELETE, 也可以改變 HTTP header來滿足使用REST API需要的特定條件。<br>curl 是一款命令行多協議支持的服務器訪問工具,可以用它來訪問HTTP服務器，就像瀏覽器一樣。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl http://www.example.com  取得網頁內容, 輸出至螢幕</span><br><span class="line">curl -o page.html http://www.example.com  取得網頁內容, 輸出至檔案 (參數 -o)</span><br><span class="line">curl -x 123.45.67.89:1080 -o page.html http://www.linuxidc.com  -x: 指定 http 使用的 proxy</span><br></pre></td></tr></table></figure></p>
+<h2 id="Nmap-網路對映器"><a href="#Nmap-網路對映器" class="headerlink" title="Nmap 網路對映器"></a>Nmap 網路對映器</h2><p>是一款用於網路發現和安全審計的網路安全工具，它是自由軟體。軟體名字Nmap是Network Mapper的簡稱。通常情況下，Nmap用於：</p>
+<p>列舉網路主機清單<br>管理服務升級排程<br>監控主機<br>服務執行狀況<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap www.hinet.net</span><br></pre></td></tr></table></figure></p>
+<p>◎ping看家在不在 telnet看門在不在 nmap掃看看有幾個門 curl看門後的結構<br>可用checkhost網站</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/HowardNote/2018/04/25/Linux2/" rel="next" title="Linux Log">
+                <i class="fa fa-chevron-left"></i> Linux Log
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/HowardNote/2018/04/25/Linux4/" rel="prev" title="查看Linux效能指標">
+                查看Linux效能指標 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HowardHuang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/HowardNote/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP"><span class="nav-number">1.</span> <span class="nav-text">ICMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">2.</span> <span class="nav-text">TCP/UDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-超文本傳輸協定"><span class="nav-number">3.</span> <span class="nav-text">HTTP  超文本傳輸協定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ping"><span class="nav-number">4.</span> <span class="nav-text">Ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Telnet"><span class="nav-number">5.</span> <span class="nav-text">Telnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CURL"><span class="nav-number">6.</span> <span class="nav-text">CURL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nmap-網路對映器"><span class="nav-number">7.</span> <span class="nav-text">Nmap 網路對映器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HowardHuang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/HowardNote/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/HowardNote/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/HowardNote/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/HowardNote/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/HowardNote/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
