@@ -81,14 +81,14 @@
 
 <meta name="description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查看Linux效能指標">
+<meta property="og:title" content="菜鳥筆記-查看Linux效能指標">
 <meta property="og:url" content="http://howardhuang0517.github.io/HowardNote/2018/04/25/Linux4/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-25T09:07:44.854Z">
+<meta property="og:updated_time" content="2018-04-25T09:23:27.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查看Linux效能指標">
+<meta name="twitter:title" content="菜鳥筆記-查看Linux效能指標">
 <meta name="twitter:description" content="新手菜鳥的發文，寫錯是剛好，寫對是運氣好。">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>查看Linux效能指標 | Hexo</title>
+  <title>菜鳥筆記-查看Linux效能指標 | Hexo</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">查看Linux效能指標</h1>
+          <h1 class="post-title" itemprop="name headline">菜鳥筆記-查看Linux效能指標</h1>
         
 
         <div class="post-meta">
@@ -307,13 +307,13 @@
 <p>Swap：<br>si: 每秒從交換區寫到記憶體的大小<br>so: 每秒寫入交換區的記憶體大小<br>IO：（現在的Linux版本塊的大小為1024bytes）<br>bi: 每秒讀取的塊數<br>bo: 每秒寫入的塊數</p>
 <p>系統：<br>in: 每秒中斷數，包括時鐘中斷。<br>cs: 每秒上下文切換數。</p>
 <p>CPU（以百分比表示）：<br>us: 使用者進程執行時間(user time)<br>sy: 系統進程執行時間(system time)<br>id: 閒置時間(包括IO等待時間),中央處理器的閒置時間 。以百分比表示。<br>wa: 等待IO時間</p>
-<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">df  命令的功能是用來檢查linux伺服器的檔案系統的磁碟空間佔用情況。可以利用該命令來獲取硬碟被佔用了多少空間，目前還剩下多少空間</span><br><span class="line"></span><br><span class="line">df/du  查看硬碟或目錄的容量 </span><br><span class="line"> </span><br><span class="line">df -h  將容量結果以易讀的容量格式顯示出來</span><br><span class="line"></span><br><span class="line">du 這個指令來計算資料夾跟檔案大小</span><br><span class="line"></span><br><span class="line">du -s 目錄下的所有檔案、資料夾總大小，單位是KB</span><br><span class="line"></span><br><span class="line">du -sh 目錄下的所有檔案、資料夾總大小，單位是GB</span><br><span class="line"></span><br><span class="line">lsblk 可以看成『 list block device 』的縮寫，就是列出所有儲存裝置的意思</span><br></pre></td></tr></table></figure>
+<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">df  命令的功能是用來檢查linux伺服器的檔案系統的磁碟空間佔用情況。可以利用該命令來獲取硬碟被佔用了多少空間，目前還剩下多少空間</span><br><span class="line"></span><br><span class="line">df/du  查看硬碟或目錄的容量 </span><br><span class="line"></span><br><span class="line">df -h  將容量結果以易讀的容量格式顯示出來</span><br><span class="line"></span><br><span class="line">du 這個指令來計算資料夾跟檔案大小</span><br><span class="line"></span><br><span class="line">du -s 目錄下的所有檔案、資料夾總大小，單位是KB</span><br><span class="line"></span><br><span class="line">du -sh 目錄下的所有檔案、資料夾總大小，單位是GB</span><br><span class="line"></span><br><span class="line">lsblk 可以看成『 list block device 』的縮寫，就是列出所有儲存裝置的意思</span><br></pre></td></tr></table></figure>
 <p>NAME：就是裝置的檔名囉！會省略 /dev 等前導目錄！<br>MAJ:MIN：其實核心認識的裝置都是透過這兩個代碼來熟悉的！分別是主要：次要裝置代碼！<br>RM：是否為可卸載裝置 (removable device)，如光碟、USB 磁碟等等<br>SIZE：當然就是容量囉！<br>RO：是否為唯讀裝置的意思<br>TYPE：是磁碟 (disk)、分割槽 (partition) 還是唯讀記憶體 (rom) 等輸出<br>MOUTPOINT：掛載點</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iostat  是I/O statistics（輸入/輸出統計）的縮寫，iostat工具將對系統的磁片操作活動進行監視。</span><br><span class="line"></span><br><span class="line">yum install sysstat -y  執行 iostat 要安裝 ifconfig 到系統</span><br><span class="line"></span><br><span class="line">iostat  顯示所有設備負載情況</span><br></pre></td></tr></table></figure>
 <p>cpu屬性值說明：<br>%user：CPU處在用戶模式下的時間百分比。<br>%nice：CPU處在帶NICE值的用戶模式下的時間百分比。<br>%system：CPU處在系統模式下的時間百分比。<br>%iowait：CPU等待輸入輸出完成時間的百分比。<br>%steal：管理程式維護另一個虛擬處理器時，虛擬CPU的無意識等待時間百分比。<br>%idle：CPU空閒時間百分比。<br>tps：該設備每秒的傳輸次數（Indicate the number of transfers per second that were issued to the device.）。“一次傳輸”意思是“一次I/O請求”。多個邏輯請求可能會被合併為“一次I/O請求”。“一次傳輸”請求的大小是未知的。<br>kB_read/s：每秒從設備（drive expressed）讀取的資料量；<br>kB_wrtn/s：每秒向設備（drive expressed）寫入的資料量；<br>kB_read：讀取的總數據量；<br>kB_wrtn：寫入的總數量資料量；<br>這些單位都為Kilobytes。</p>
 <p>-C 顯示CPU使用情況<br>-d 顯示磁片使用情況<br>-k 以 KB 為單位顯示<br>-m 以 M 為單位顯示<br>-N 顯示磁碟陣列(LVM) 資訊<br>-n 顯示NFS 使用情況<br>-p[磁片] 顯示磁片和分區的情況<br>-t 顯示終端和CPU的信息<br>-x 顯示詳細資訊<br>-V 顯示版本資訊</p>
-<h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ethtool +網卡號碼 查看網路卡狀態及設定</span><br><span class="line"></span><br><span class="line">ifconfig  可以用來監控網卡的現實流量(可以指定網段)、反向解析IP、顯示端口信息等</span><br><span class="line"></span><br><span class="line">dmesg | grep -i duplex   Linux查看網卡鏈接速度。在Linux系統中，遇到網路速度慢的時候會需要確認網卡的鏈接速度和工作狀態，用以排查故障</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iperf 是一個 TCP/IP 和 UDP/IP 的效能測量工具，能夠提供網絡吞吐率信息，以及震動、丟包率、最大段和最大傳輸單元大小等統計信息</span><br><span class="line">iperf -s  看Server端</span><br><span class="line">iperf -c 192.12.1.2  -t 10 -i 5  看Client端</span><br></pre></td></tr></table></figure>
+<h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ethtool +網卡號碼 查看網路卡狀態及設定</span><br><span class="line"></span><br><span class="line">ifconfig  可以用來監控網卡的現實流量(可以指定網段)、反向解析IP、顯示端口信息等</span><br><span class="line"></span><br><span class="line">dmesg | grep -i duplex   </span><br><span class="line">Linux查看網卡鏈接速度。在Linux系統中，遇到網路速度慢的時候會需要確認網卡的鏈接速度和工作狀態，用以排查故障</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iperf 是一個 TCP/IP 和 UDP/IP 的效能測量工具，</span><br><span class="line">能夠提供網絡吞吐率信息，以及震動、丟包率、最大段和最大傳輸單元大小等統計信息</span><br><span class="line">iperf -s  看Server端</span><br><span class="line">iperf -c 192.12.1.2  -t 10 -i 5  看Client端</span><br></pre></td></tr></table></figure>
 <p>#-c : server IP</p>
 <p>#-t : 測量時間間隔為10秒</p>
 <p>#-i : 每隔 5 秒將測量結果顯示出來，最後再算出平均值。</p>
@@ -347,10 +347,7 @@ fio -filename=/dev/sdb1 -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=70 -i
 #   randread
 #   randwrite
 #   randrw
-</code></pre><p>–bs=4k                     # block size 檔案寫入大小<br>–size=4g                   # 測試的大小<br>–numjobs=16                # 同一個 workload 同時多少個 IO 請求<br>–runtime=180               # timeout 時間 (秒)，就算 –size<br>                              的大小還未到達，還是結束<br>–ioengine=libaio           # IO 引擎</p>
-<pre><code>#   libaio - async IO 
-#   ...
-</code></pre><p>–rwmixwrite=30             # 混合讀寫時，寫佔 30% loading<br>–rwmixread=100             # 混合讀寫時，讀佔 100% loading<br>–refill_buffers            # 把 Buffer 填滿就不會跑到 Buffer 的值<br>–group_reporting           # 總表顯示<br>–iodepth=16                # 同一時間有多少 IO 在作存取<br>–name=fio_test_write       # job 名稱，會在當下目錄產生暫存檔</p>
+</code></pre><p>–bs=4k                     # block size 檔案寫入大小<br>–size=4g                   # 測試的大小<br>–numjobs=16                # 同一個 workload 同時多少個 IO 請求<br>–runtime=180               # timeout 時間 (秒)，就算–size的大小還未到達，還是結束<br>–rwmixwrite=30             # 混合讀寫時，寫佔 30% loading<br>–rwmixread=100             # 混合讀寫時，讀佔 100% loading<br>–refill_buffers            # 把 Buffer 填滿就不會跑到 Buffer 的值<br>–group_reporting           # 總表顯示<br>–iodepth=16                # 同一時間有多少 IO 在作存取<br>–name=fio_test_write       # job 名稱，會在當下目錄產生暫存檔</p>
 
       
     </div>
@@ -375,8 +372,8 @@ fio -filename=/dev/sdb1 -direct=1 -iodepth 1 -thread -rw=randrw -rwmixread=70 -i
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/HowardNote/2018/04/25/Linux3/" rel="next" title="Linux相關協定">
-                <i class="fa fa-chevron-left"></i> Linux相關協定
+              <a href="/HowardNote/2018/04/25/Linux3/" rel="next" title="菜鳥筆記-Linux相關協定">
+                <i class="fa fa-chevron-left"></i> 菜鳥筆記-Linux相關協定
               </a>
             
           </div>
